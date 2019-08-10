@@ -1,5 +1,6 @@
 import * as admin from "firebase-admin";
-const serviceAccount = require("./serviceAccount.json");
+
+const serviceAccount = require("../../serviceAccount.json");
 
 export function initFirebase() {
   admin.initializeApp({

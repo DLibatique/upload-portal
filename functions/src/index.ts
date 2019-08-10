@@ -2,7 +2,7 @@ import { storage } from "firebase-functions";
 import { drive } from "./config/gdrive";
 import * as fs from "fs";
 
-export const onFileUpload = storage.object().onFinalize(async object => {
+export const saveToGDrive = storage.object().onFinalize(async object => {
   try {
     const folderId = "1dQSHZFvTzvneGrtvRrBHEyPBfJs9Ozmb";
     const fileMetadata = {

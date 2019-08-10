@@ -1,6 +1,13 @@
 import { google } from "googleapis";
 
-export const drive = google.drive({
-  version: "v3",
-  auth: "AIzaSyDyhb-iVOb9SAR8L2I_lO5T_9GM7sMNs5w"
-});
+const SCOPES = ["https://www.googleapis.com/auth/drive"];
+const CREDENTIALS_PATH = "../../credentials.json";
+const credentials = require(CREDENTIALS_PATH);
+const auth = new google.auth.JWT(
+  credentials.client_email,
+  undefined,
+  credentials.private_key,
+  SCOPES
+);
+
+export const drive = google.drive({ version: "v3", auth });

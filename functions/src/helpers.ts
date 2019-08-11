@@ -43,15 +43,19 @@ export async function uploadToGoogleDrive(
       body: fileStream
     };
 
-    const drive = google.drive({ version: "v3", auth });
+    let data;
 
-    const response = await drive.files.create({
-      requestBody: fileMetadata,
-      media,
-      fields: 'id'
+    auth.authorize(async (err, response) => {
+      if (err) console.log(`Error authorizing google drive: ${err}`);
+      const file = await google.drive({ version: "v3", auth }).files.create({
+        requestBody: fileMetadata,
+        media,
+        fields: "id"
+      });
+      data = file.data;
+      console.log(data);
+      return data;
     });
-
-    return response;
   } catch (error) {
     console.error(`Error uploading to gDrive: ${error}`);
     return error;

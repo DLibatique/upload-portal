@@ -44,9 +44,10 @@ export async function uploadToGoogleDrive(
     };
 
     const drive = google.drive({ version: "v3", auth });
+
     const response = await drive.files.create({
       requestBody: fileMetadata,
-      media: media,
+      media,
       fields: 'id'
     });
 

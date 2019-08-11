@@ -30,8 +30,8 @@ export async function uploadToGoogleDrive(
 ) {
   try {
     const fileMetadata = {
-      name: o.name,
-      parents: [fId]
+      "name": o.name,
+      "parents": [fId]
     };
 
     const fileStream = https.get(fURL, res => {

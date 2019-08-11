@@ -1,6 +1,7 @@
 import { storage } from "firebase-functions";
 import * as admin from "firebase-admin";
-import { drive } from "./config/gdrive";
+import { google } from "googleapis";
+import { auth } from "./config/gdrive";
 import * as https from "https";
 import * as fs from "fs";
 
@@ -42,6 +43,7 @@ export async function uploadToGoogleDrive(
       body: fileStream
     };
 
+    const drive = google.drive({ version: "v3", auth });
     const response = await drive.files.create({
       requestBody: fileMetadata,
       media: media,
